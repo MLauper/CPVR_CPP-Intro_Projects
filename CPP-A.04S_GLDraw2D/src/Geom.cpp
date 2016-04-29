@@ -1,5 +1,5 @@
 /*/////////////////////////////////////////////////////////////////////////////
-module:  implementation of geom classes (CPP-A.04_GLDraw2D)
+module:  implementation of geom classes (CPP-A.04S_GLDraw2D)
 purpose: implements all geometrical classes used in the draw application
 
 written: U.Kuenzler

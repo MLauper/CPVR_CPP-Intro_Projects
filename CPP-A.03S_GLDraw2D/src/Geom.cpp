@@ -1,5 +1,5 @@
 /*/////////////////////////////////////////////////////////////////////////////
-module:  implementation of geom classes (CPP-A.04_GLDraw2D)
+module:  implementation of geom classes (CPP-A.03S_GLDraw2D)
 purpose: implements all geometrical classes used in the draw application
 
 written: U.Kuenzler
@@ -16,15 +16,7 @@ history: 1.00 - initial version of OpenGL drawing application
 using namespace std;
 
 
-
-// OpenGL helper includes /////////////////////////////////////////////////////
-#include <GL/glew.h>
-#include <FL/glut.H>
-
-
-
 // application includes ///////////////////////////////////////////////////////
-#include "../inc/Drawing.h"
 #include "../inc/Geom.h"
 
 
@@ -58,29 +50,6 @@ void CPoint::list( void )
 ///////////////////////////////////////////////////////////////////////////////
 {
 	cout << "CPoint : " << "Px=" << x << " Py=" << y << endl;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-// class:    CPoint
-// function: draw()
-// purpose:  draw point as cross using OpenGL commands
-///////////////////////////////////////////////////////////////////////////////
-void CPoint::draw( void )
-///////////////////////////////////////////////////////////////////////////////
-{
-	// cout << "DEBUG: CPoint::draw() x=" << x << " y=" << y << endl;
-
-	// define the size of cross
-	static const float crosslength = 5;
-
-	// draw the cross using two lines
-	glBegin(GL_LINES);
-	glVertex2f(x - crosslength, y);
-	glVertex2f(x + crosslength+1, y );
-	glVertex2f(x, y - (crosslength+1));
-	glVertex2f(x, y + crosslength);
-	glEnd();
 }
 
 
@@ -185,21 +154,6 @@ void CLine::list( void )
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// class:    CLine
-// function: draw()
-// purpose:  draw line using OpenGL commands
-///////////////////////////////////////////////////////////////////////////////
-void CLine::draw( void )
-///////////////////////////////////////////////////////////////////////////////
-{
-	glBegin(GL_LINES);
-	glVertex2f(_P1.x, _P1.y);
-	glVertex2f(_P2.x, _P2.y);
-	glEnd();
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
 // class:    CRect
 // function: constructor
 // purpose:  constructs a object using two coordinate pairs
@@ -296,18 +250,6 @@ void CRect::list( void )
 ///////////////////////////////////////////////////////////////////////////////
 {
 	cout << "CRect  :" << endl; _P1.list(); _P2.list(); cout << endl;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-// class:    CRect
-// function: draw()
-// purpose:  draw rectangle using OpenGL commands
-///////////////////////////////////////////////////////////////////////////////
-void CRect::draw( void )
-///////////////////////////////////////////////////////////////////////////////
-{
-	glRectf(_P1.x, _P1.y, _P2.x, _P2.y);
 }
 
 
@@ -419,19 +361,4 @@ void CCircle::list( void )
 {
 	cout << "CCircle: " << endl; _P1.list();
 	cout << "Radius : " << _Radius << endl << endl;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-// class:    CCircle
-// function: draw()
-// purpose:  draw circle using OpenGL commands
-///////////////////////////////////////////////////////////////////////////////
-void CCircle::draw( void )
-///////////////////////////////////////////////////////////////////////////////
-{
-	glPushMatrix();
-	glTranslatef((GLfloat)_P1.x, (GLfloat)_P1.y, 0.0);
-	gluDisk(gluNewQuadric(), _Radius, _Radius, 100, 1);
-	glPopMatrix();
 }

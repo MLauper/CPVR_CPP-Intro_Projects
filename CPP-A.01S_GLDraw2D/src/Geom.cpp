@@ -26,8 +26,8 @@ using namespace std;
 void CPoint::set( float x1, float y1 )
 ///////////////////////////////////////////////////////////////////////////////
 {
-   x = x1;
-   y = y1;
+	x = x1;
+	y = y1;
 }
 
 
@@ -51,8 +51,8 @@ void CPoint::list( void )
 void CLine::set( float x1, float y1, float x2, float y2 )
 ///////////////////////////////////////////////////////////////////////////////
 {
-   _P1.set(x1, y1);
-   _P2.set(x2, y2);
+	_P1.set(x1, y1);
+	_P2.set(x2, y2);
 }
 
 
@@ -102,7 +102,7 @@ void CCircle::set( float x1, float y1, float radius )
 ///////////////////////////////////////////////////////////////////////////////
 {
 	_P1.set(x1, y1);
-   _Radius = radius;
+	_Radius = radius;
 }
 
 

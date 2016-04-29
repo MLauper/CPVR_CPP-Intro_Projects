@@ -1,5 +1,5 @@
 /*/////////////////////////////////////////////////////////////////////////////
-module:  interface of geom classes (CPP-A.04_GLDraw2D)
+module:  interface of geom classes (CPP-A.04S_GLDraw2D)
 purpose: declare the interface to all geometrical classes
 
 written: U.Kuenzler

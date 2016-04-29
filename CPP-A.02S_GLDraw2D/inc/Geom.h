@@ -1,5 +1,5 @@
 /*/////////////////////////////////////////////////////////////////////////////
-module:  interface of geom classes (CPP-A.04_GLDraw2D)
+module:  interface of geom classes (CPP-A.02S_GLDraw2D)
 purpose: declare the interface to all geometrical classes
 
 written: U.Kuenzler
@@ -24,11 +24,6 @@ version: 1.01
 ///////////////////////////////////////////////////////////////////////////////
 class CPoint
 {
-	// friend declarations
-	friend class CLine;
-	friend class CRect;
-	friend class CCircle;
-
 private:
 	float x;
 	float y;
@@ -41,11 +36,8 @@ public: // constructors and destructor
 	~CPoint() { ulCount--; }
 
 public: // functions
-	CPoint operator+ ( const CPoint& pt ) const { return CPoint( x + pt.x, y + pt.y ); }
-	CPoint operator- ( const CPoint& pt ) const { return CPoint( x - pt.x, y - pt.y ); }
 	void set( float x, float y ) { CPoint::x = x; CPoint::y = y; }
 	void list( void );
-	void draw( void );
 	static void listCount( void ) { cout << "Count of points: " << ulCount << endl; }
 };
 
@@ -69,11 +61,8 @@ public: // constructors and destructor
 	~CLine() { ulCount--; }
 
 public: // functions
-	CLine& operator=( const CLine& source );
-	CLine  operator+( const CLine& addline );
 	void set( float x1, float y1, float x2, float y2 );
 	void list( void );
-	void draw( void );
 	static void listCount( void ) { cout << "Count of lines: " << ulCount << endl; }
 };
 
@@ -97,10 +86,8 @@ public: // constructors and destructor
 	~CRect() { ulCount--; }
 
 public: // functions
-	CRect operator+( const CRect& addrect );
 	void set( float x1, float y1, float x2, float y2 );
 	void list( void );
-	void draw( void );
 	static void listCount( void ) { cout << "Count of rectangles: " << ulCount << endl; }
 };
 
@@ -124,10 +111,8 @@ public: // constructors and destructor
 	~CCircle() { ulCount--; }
 
 public: // functions
-	CCircle operator+( const CCircle& addcircle );
 	void set( float x1, float y1, float radius );
 	void list( void );
-	void draw( void );
 	static void listCount( void ) { cout << "Count of circles: " << ulCount << endl; }
 };
 

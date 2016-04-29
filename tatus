@@ -1,0 +1,601 @@
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex f6b8f7a..c3a228d 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -1,2 +1,5 @@[m
+ .idea*[m
+[31m-*.iml[m
+\ No newline at end of file[m
+[32m+[m[32m*.iml[m
+[32m+[m[32m*.exe[m
+[32m+[m[32m*.ilk[m
+[32m+[m[32m*.pdb[m
+\ No newline at end of file[m
+[1mdiff --git a/CPP-02-D.02_FunctionOverloading/src/FunctionOverloading.cpp b/CPP-02-D.02_FunctionOverloading/src/FunctionOverloading.cpp[m
+[1mindex 26ae2dc..138c6b9 100644[m
+[1m--- a/CPP-02-D.02_FunctionOverloading/src/FunctionOverloading.cpp[m
+[1m+++ b/CPP-02-D.02_FunctionOverloading/src/FunctionOverloading.cpp[m
+[36m@@ -8,7 +8,7 @@[m [musing namespace std;[m
+ // typedef declaration[m
+ typedef char* PSTR;[m
+ [m
+[31m-/* UngÃ¼ltige FunktionsÃ¼berladungen - RÃ¼ckgabewert[m
+[32m+[m[32m/* Ungültige Funktionsüberladungen - Rückgabewert[m
+ int print(char* str)[m
+ {[m
+ 	cout << "Print string   : " << str << endl;[m
+[36m@@ -16,14 +16,14 @@[m [mint print(char* str)[m
+ };[m
+ // */[m
+ [m
+[31m-/* UngÃ¼ltige FunktionsÃ¼berladungen - typedef nicht ausreichend[m
+[32m+[m[32m/* Ungültige Funktionsüberladungen - typedef nicht ausreichend[m
+ void print(PSTR str)[m
+ {[m
+ 	cout << "Print typedef string: " << str << endl;[m
+ };[m
+ // */[m
+ [m
+[31m-/* UngÃ¼ltige FunktionsÃ¼berladungen - int& bzw. const int[m
+[32m+[m[32m/* Ungültige Funktionsüberladungen - int& bzw. const int[m
+ void print( int& value)[m
+ {[m
+ 	cout << "Print integer  : " << value << endl;[m
+[36m@@ -31,7 +31,7 @@[m [mvoid print( int& value)[m
+ // */[m
+ [m
+ [m
+[31m-// GÃ¼ltige FunktionsÃ¼berladung[m
+[32m+[m[32m// Gültige Funktionsüberladung[m
+ void print(char* str)[m
+ {[m
+ 	cout << "Print string   : " << str << endl;[m
+[1mdiff --git a/CPP-A.01S_GLDraw2D/inc/Geom.h b/CPP-A.01S_GLDraw2D/inc/Geom.h[m
+[1mindex 1250a67..7a60bfd 100644[m
+[1m--- a/CPP-A.01S_GLDraw2D/inc/Geom.h[m
+[1m+++ b/CPP-A.01S_GLDraw2D/inc/Geom.h[m
+[36m@@ -25,8 +25,8 @@[m [mversion: 1.01[m
+ class CPoint[m
+ {[m
+ private:[m
+[31m-   float x;[m
+[31m-   float y;[m
+[32m+[m	[32mfloat x;[m
+[32m+[m	[32mfloat y;[m
+ [m
+ public: // functions[m
+ 	void set( float x, float y );[m
+[36m@@ -57,12 +57,12 @@[m [mpublic: // functions[m
+ class CRect[m
+ {[m
+ private:[m
+[31m-   CPoint _P1;[m
+[31m-   CPoint _P2;[m
+[32m+[m	[32mCPoint _P1;[m
+[32m+[m	[32mCPoint _P2;[m
+ [m
+ public: // functions[m
+[31m-   void set( float x1, float y1, float x2, float y2 );[m
+[31m-   void list( void );[m
+[32m+[m	[32mvoid set( float x1, float y1, float x2, float y2 );[m
+[32m+[m	[32mvoid list( void );[m
+ };[m
+ [m
+ [m
+[36m@@ -73,12 +73,12 @@[m [mpublic: // functions[m
+ class CCircle[m
+ {[m
+ private:[m
+[31m-   CPoint _P1;[m
+[31m-   float _Radius;[m
+[32m+[m	[32mCPoint _P1;[m
+[32m+[m	[32mfloat _Radius;[m
+ [m
+ public: // functions[m
+[31m-   void set( float x1, float y1, float radius );[m
+[31m-   void list( void );[m
+[32m+[m	[32mvoid set( float x1, float y1, float radius );[m
+[32m+[m	[32mvoid list( void );[m
+ };[m
+ [m
+ [m
+[1mdiff --git a/CPP-A.01S_GLDraw2D/src/Draw.cpp b/CPP-A.01S_GLDraw2D/src/Draw.cpp[m
+[1mindex b9e2d20..8247b21 100644[m
+[1m--- a/CPP-A.01S_GLDraw2D/src/Draw.cpp[m
+[1m+++ b/CPP-A.01S_GLDraw2D/src/Draw.cpp[m
+[36m@@ -23,65 +23,65 @@[m [musing namespace std;[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ int main(void)[m
+ {[m
+[31m-   // static instantiation of objects[m
+[31m-   CPoint   P1;[m
+[31m-   CLine    L1;[m
+[31m-   CRect    R1;[m
+[31m-   CCircle  C1;[m
+[31m-[m
+[31m-   // definition of pointer to dynamic instantiated objects[m
+[31m-   CPoint*   pP2;[m
+[31m-   CLine*    pL2;[m
+[31m-   CRect*    pR2;[m
+[31m-   CCircle*  pC2;[m
+[31m-[m
+[31m-   // dynamic instantiation of objects[m
+[31m-   pP2 = new CPoint;[m
+[31m-   pL2 = new CLine;[m
+[31m-   pR2 = new CRect;[m
+[31m-   pC2 = new CCircle;[m
+[31m-[m
+[31m-   // set coordinates of objects[m
+[31m-   P1.set( 1, 2 );[m
+[31m-   pP2->set( 3, 4 );[m
+[31m-   L1.set( 10, 10, 20, 20 );[m
+[31m-   pL2->set( 30, 30, 40, 40 );[m
+[31m-   R1.set( 100, 100, 200, 200 );[m
+[31m-   pR2->set( 300, 300, 400, 400 );[m
+[31m-   C1.set( 1000, 1000, 200 );[m
+[31m-   pC2->set( 3000, 3000, 400 );[m
+[31m-[m
+[31m-   // list coordinates of objects[m
+[31m-   cout << "point object, defined with" << endl;[m
+[31m-   cout << "   P at ";  P1.list(); cout << endl << endl;[m
+[31m-[m
+[31m-   cout << "point object, defined with" << endl;[m
+[31m-   cout << "   P at ";  pP2->list(); cout << endl << endl;[m
+[31m-[m
+[31m-   cout << "line object, defined with" << endl;[m
+[31m-   cout << "   P1, P2 at "; L1.list(); cout << endl << endl;[m
+[31m-[m
+[31m-   cout << "line object, defined with" << endl;[m
+[31m-   cout << "   P1, P2 at "; pL2->list(); cout << endl << endl;[m
+[31m-[m
+[31m-   cout << "rectangle object, defined with" << endl;[m
+[31m-   cout << "   P1, P2 at "; R1.list(); cout << endl << endl;[m
+[31m-[m
+[31m-   cout << "rectangle object, defined with" << endl;[m
+[31m-   cout << "   P1, P2 at "; pR2->list(); cout << endl << endl;[m
+[31m-[m
+[31m-   cout << "circle object, defined with" << endl;[m
+[31m-   cout << "   P1 at "; C1.list(); cout << endl << endl;[m
+[31m-[m
+[31m-   cout << "circle object, defined with" << endl;[m
+[31m-   cout << "   P1 at "; pC2->list(); cout << endl << endl;[m
+[31m-[m
+[31m-   // explicit destroy of dynamic objects[m
+[31m-   cout << "Deleting dynamic objects ..." << endl << endl;[m
+[31m-   delete pP2;[m
+[31m-   delete pL2;[m
+[31m-   delete pR2;[m
+[31m-   delete pC2;[m
+[31m-[m
+[31m-   return 0;[m
+[32m+[m	[32m// static instantiation of objects[m
+[32m+[m	[32mCPoint   P1;[m
+[32m+[m	[32mCLine    L1;[m
+[32m+[m	[32mCRect    R1;[m
+[32m+[m	[32mCCircle  C1;[m
+[32m+[m
+[32m+[m	[32m// definition of pointer to dynamic instantiated objects[m
+[32m+[m	[32mCPoint*   pP2;[m
+[32m+[m	[32mCLine*    pL2;[m
+[32m+[m	[32mCRect*    pR2;[m
+[32m+[m	[32mCCircle*  pC2;[m
+[32m+[m
+[32m+[m	[32m// dynamic instantiation of objects[m
+[32m+[m	[32mpP2 = new CPoint;[m
+[32m+[m	[32mpL2 = new CLine;[m
+[32m+[m	[32mpR2 = new CRect;[m
+[32m+[m	[32mpC2 = new CCircle;[m
+[32m+[m
+[32m+[m	[32m// set coordinates of objects[m
+[32m+[m	[32mP1.set( 1, 2 );[m
+[32m+[m	[32mpP2->set( 3, 4 );[m
+[32m+[m	[32mL1.set( 10, 10, 20, 20 );[m
+[32m+[m	[32mpL2->set( 30, 30, 40, 40 );[m
+[32m+[m	[32mR1.set( 100, 100, 200, 200 );[m
+[32m+[m	[32mpR2->set( 300, 300, 400, 400 );[m
+[32m+[m	[32mC1.set( 1000, 1000, 200 );[m
+[32m+[m	[32mpC2->set( 3000, 3000, 400 );[m
+[32m+[m
+[32m+[m	[32m// list coordinates of objects[m
+[32m+[m	[32mcout << "point object, defined with" << endl;[m
+[32m+[m	[32mcout << "   P at ";  P1.list(); cout << endl << endl;[m
+[32m+[m
+[32m+[m	[32mcout << "point object, defined with" << endl;[m
+[32m+[m	[32mcout << "   P at ";  pP2->list(); cout << endl << endl;[m
+[32m+[m
+[32m+[m	[32mcout << "line object, defined with" << endl;[m
+[32m+[m	[32mcout << "   P1, P2 at "; L1.list(); cout << endl << endl;[m
+[32m+[m
+[32m+[m	[32mcout << "line object, defined with" << endl;[m
+[32m+[m	[32mcout << "   P1, P2 at "; pL2->list(); cout << endl << endl;[m
+[32m+[m
+[32m+[m	[32mcout << "rectangle object, defined with" << endl;[m
+[32m+[m	[32mcout << "   P1, P2 at "; R1.list(); cout << endl << endl;[m
+[32m+[m
+[32m+[m	[32mcout << "rectangle object, defined with" << endl;[m
+[32m+[m	[32mcout << "   P1, P2 at "; pR2->list(); cout << endl << endl;[m
+[32m+[m
+[32m+[m	[32mcout << "circle object, defined with" << endl;[m
+[32m+[m	[32mcout << "   P1 at "; C1.list(); cout << endl << endl;[m
+[32m+[m
+[32m+[m	[32mcout << "circle object, defined with" << endl;[m
+[32m+[m	[32mcout << "   P1 at "; pC2->list(); cout << endl << endl;[m
+[32m+[m
+[32m+[m	[32m// explicit destroy of dynamic objects[m
+[32m+[m	[32mcout << "Deleting dynamic objects ..." << endl << endl;[m
+[32m+[m	[32mdelete pP2;[m
+[32m+[m	[32mdelete pL2;[m
+[32m+[m	[32mdelete pR2;[m
+[32m+[m	[32mdelete pC2;[m
+[32m+[m
+[32m+[m	[32mreturn 0;[m
+ }[m
+[1mdiff --git a/CPP-A.01S_GLDraw2D/src/Geom.cpp b/CPP-A.01S_GLDraw2D/src/Geom.cpp[m
+[1mindex 91fc4ad..efe073d 100644[m
+[1m--- a/CPP-A.01S_GLDraw2D/src/Geom.cpp[m
+[1m+++ b/CPP-A.01S_GLDraw2D/src/Geom.cpp[m
+[36m@@ -26,8 +26,8 @@[m [musing namespace std;[m
+ void CPoint::set( float x1, float y1 )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   x = x1;[m
+[31m-   y = y1;[m
+[32m+[m	[32mx = x1;[m
+[32m+[m	[32my = y1;[m
+ }[m
+ [m
+ [m
+[36m@@ -51,8 +51,8 @@[m [mvoid CPoint::list( void )[m
+ void CLine::set( float x1, float y1, float x2, float y2 )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1.set(x1, y1);[m
+[31m-   _P2.set(x2, y2);[m
+[32m+[m	[32m_P1.set(x1, y1);[m
+[32m+[m	[32m_P2.set(x2, y2);[m
+ }[m
+ [m
+ [m
+[36m@@ -102,7 +102,7 @@[m [mvoid CCircle::set( float x1, float y1, float radius )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+ 	_P1.set(x1, y1);[m
+[31m-   _Radius = radius;[m
+[32m+[m	[32m_Radius = radius;[m
+ }[m
+ [m
+ [m
+[1mdiff --git a/CPP-A.04_GLDraw2D/inc/Geom.h b/CPP-A.04_GLDraw2D/inc/Geom.h[m
+[1mindex 054a31a..074e96a 100644[m
+[1m--- a/CPP-A.04_GLDraw2D/inc/Geom.h[m
+[1m+++ b/CPP-A.04_GLDraw2D/inc/Geom.h[m
+[36m@@ -46,8 +46,7 @@[m [mpublic: // functions[m
+ 	void set( float x, float y ) { CPoint::x = x; CPoint::y = y; }[m
+ 	void list( void );[m
+ 	void draw( void );[m
+[31m-	static void listCount( void ) [m
+[31m-		{ cout << "Count of points: " << ulCount << endl; }[m
+[32m+[m	[32mstatic void listCount( void ) { cout << "Count of points: " << ulCount << endl; }[m
+ };[m
+ [m
+ [m
+[36m@@ -75,8 +74,7 @@[m [mpublic: // functions[m
+ 	void set( float x1, float y1, float x2, float y2 );[m
+ 	void list( void );[m
+ 	void draw( void );[m
+[31m-	static void listCount( void ) [m
+[31m-		{ cout << "Count of lines: " << ulCount << endl; }[m
+[32m+[m	[32mstatic void listCount( void ) { cout << "Count of lines: " << ulCount << endl; }[m
+ };[m
+ [m
+ [m
+[36m@@ -87,24 +85,23 @@[m [mpublic: // functions[m
+ class CRect[m
+ {[m
+ private:[m
+[31m-   CPoint _P1;[m
+[31m-   CPoint _P2;[m
+[31m-   static unsigned long ulCount;[m
+[32m+[m	[32mCPoint _P1;[m
+[32m+[m	[32mCPoint _P2;[m
+[32m+[m	[32mstatic unsigned long ulCount;[m
+ [m
+ public: // constructors and destructor[m
+[31m-   CRect() { ulCount++; }[m
+[31m-   CRect( float x1, float y1, float x2, float y2 );[m
+[31m-   CRect( const CPoint& ptP1, const CPoint& ptP2 );[m
+[31m-   CRect( const CRect& source );[m
+[31m-   ~CRect() { ulCount--; }[m
+[32m+[m	[32mCRect() { ulCount++; }[m
+[32m+[m	[32mCRect( float x1, float y1, float x2, float y2 );[m
+[32m+[m	[32mCRect( const CPoint& ptP1, const CPoint& ptP2 );[m
+[32m+[m	[32mCRect( const CRect& source );[m
+[32m+[m	[32m~CRect() { ulCount--; }[m
+ [m
+ public: // functions[m
+[31m-   CRect operator+( const CRect& addrect );[m
+[31m-   void set( float x1, float y1, float x2, float y2 );[m
+[31m-   void list( void );[m
+[31m-   void draw( void );[m
+[31m-   static void listCount( void ) [m
+[31m-      { cout << "Count of rectangles: " << ulCount << endl; }[m
+[32m+[m	[32mCRect operator+( const CRect& addrect );[m
+[32m+[m	[32mvoid set( float x1, float y1, float x2, float y2 );[m
+[32m+[m	[32mvoid list( void );[m
+[32m+[m	[32mvoid draw( void );[m
+[32m+[m	[32mstatic void listCount( void ) { cout << "Count of rectangles: " << ulCount << endl; }[m
+ };[m
+ [m
+ [m
+[36m@@ -115,24 +112,23 @@[m [mpublic: // functions[m
+ class CCircle[m
+ {[m
+ private:[m
+[31m-   CPoint _P1;[m
+[31m-   float _Radius;[m
+[31m-   static unsigned long ulCount;[m
+[32m+[m	[32mCPoint _P1;[m
+[32m+[m	[32mfloat _Radius;[m
+[32m+[m	[32mstatic unsigned long ulCount;[m
+ [m
+ public: // constructors and destructor[m
+[31m-   CCircle() { ulCount++; }[m
+[31m-   CCircle( float x1, float y1, float radius );[m
+[31m-   CCircle( const CPoint& ptP1, float radius );[m
+[31m-   CCircle( const CCircle& source );[m
+[31m-   ~CCircle() { ulCount--; }[m
+[32m+[m	[32mCCircle() { ulCount++; }[m
+[32m+[m	[32mCCircle( float x1, float y1, float radius );[m
+[32m+[m	[32mCCircle( const CPoint& ptP1, float radius );[m
+[32m+[m	[32mCCircle( const CCircle& source );[m
+[32m+[m	[32m~CCircle() { ulCount--; }[m
+ [m
+ public: // functions[m
+[31m-   CCircle operator+( const CCircle& addcircle );[m
+[31m-   void set( float x1, float y1, float radius );[m
+[31m-   void list( void );[m
+[31m-   void draw( void );[m
+[31m-   static void listCount( void ) [m
+[31m-      { cout << "Count of circles: " << ulCount << endl; }[m
+[32m+[m	[32mCCircle operator+( const CCircle& addcircle );[m
+[32m+[m	[32mvoid set( float x1, float y1, float radius );[m
+[32m+[m	[32mvoid list( void );[m
+[32m+[m	[32mvoid draw( void );[m
+[32m+[m	[32mstatic void listCount( void ) { cout << "Count of circles: " << ulCount << endl; }[m
+ };[m
+ [m
+ [m
+[1mdiff --git a/CPP-A.04_GLDraw2D/src/Geom.cpp b/CPP-A.04_GLDraw2D/src/Geom.cpp[m
+[1mindex d530e09..1942d77 100644[m
+[1m--- a/CPP-A.04_GLDraw2D/src/Geom.cpp[m
+[1m+++ b/CPP-A.04_GLDraw2D/src/Geom.cpp[m
+[36m@@ -10,8 +10,8 @@[m [mhistory: 1.00 - initial version of OpenGL drawing application[m
+ [m
+ [m
+ // system includes ////////////////////////////////////////////////////////////[m
+[31m-#include <math.h>[m
+ #include <iostream>[m
+[32m+[m[32m#include <math.h>[m
+ #include <algorithm>[m
+ using namespace std;[m
+ [m
+[36m@@ -43,9 +43,9 @@[m [munsigned long CCircle::ulCount = 0;[m
+ CPoint::CPoint(const CPoint& source)[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   x = source.x;[m
+[31m-   y = source.y;[m
+[31m-   ulCount++;[m
+[32m+[m	[32mx = source.x;[m
+[32m+[m	[32my = source.y;[m
+[32m+[m	[32mulCount++;[m
+ }[m
+ [m
+ [m
+[36m@@ -92,8 +92,8 @@[m [mvoid CPoint::draw( void )[m
+ CLine::CLine( float x1, float y1, float x2, float y2 )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   set( x1, y1, x2, y2 );[m
+[31m-   ulCount++;[m
+[32m+[m	[32mset( x1, y1, x2, y2 );[m
+[32m+[m	[32mulCount++;[m
+ }[m
+ [m
+ [m
+[36m@@ -105,9 +105,9 @@[m [mCLine::CLine( float x1, float y1, float x2, float y2 )[m
+ CLine::CLine( const CPoint& ptP1, const CPoint& ptP2 )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1 = ptP1;[m
+[31m-   _P2 = ptP2;[m
+[31m-   ulCount++;[m
+[32m+[m	[32m_P1 = ptP1;[m
+[32m+[m	[32m_P2 = ptP2;[m
+[32m+[m	[32mulCount++;[m
+ }[m
+ [m
+ [m
+[36m@@ -119,9 +119,9 @@[m [mCLine::CLine( const CPoint& ptP1, const CPoint& ptP2 )[m
+ CLine::CLine( const CLine& source )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1 = source._P1;[m
+[31m-   _P2 = source._P2;[m
+[31m-   ulCount++;[m
+[32m+[m	[32m_P1 = source._P1;[m
+[32m+[m	[32m_P2 = source._P2;[m
+[32m+[m	[32mulCount++;[m
+ }[m
+ [m
+ [m
+[36m@@ -133,9 +133,9 @@[m [mCLine::CLine( const CLine& source )[m
+ CLine& CLine::operator=( const CLine& source )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1 = source._P1;[m
+[31m-   _P2 = source._P2;[m
+[31m-   return *this;[m
+[32m+[m	[32m_P1 = source._P1;[m
+[32m+[m	[32m_P2 = source._P2;[m
+[32m+[m	[32mreturn *this;[m
+ }[m
+ [m
+ [m
+[36m@@ -147,13 +147,13 @@[m [mCLine& CLine::operator=( const CLine& source )[m
+ CLine CLine::operator+( const CLine& addline )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   // define temporary local object[m
+[31m-   CLine lineTemp;[m
+[32m+[m	[32m// define temporary local object[m
+[32m+[m	[32mCLine lineTemp;[m
+ [m
+[31m-   // calculate components of temporary line[m
+[31m-   lineTemp._P1 = _P1;[m
+[31m-   lineTemp._P2 = _P2 + addline._P2 - addline._P1;[m
+[31m-   return lineTemp;[m
+[32m+[m	[32m// calculate components of temporary line[m
+[32m+[m	[32mlineTemp._P1 = _P1;[m
+[32m+[m	[32mlineTemp._P2 = _P2 + addline._P2 - addline._P1;[m
+[32m+[m	[32mreturn lineTemp;[m
+ }[m
+ [m
+ [m
+[36m@@ -165,10 +165,10 @@[m [mCLine CLine::operator+( const CLine& addline )[m
+ void CLine::set( float x1, float y1, float x2, float y2 )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1.x = x1;[m
+[31m-   _P1.y = y1;[m
+[31m-   _P2.x = x2;[m
+[31m-   _P2.y = y2;[m
+[32m+[m	[32m_P1.x = x1;[m
+[32m+[m	[32m_P1.y = y1;[m
+[32m+[m	[32m_P2.x = x2;[m
+[32m+[m	[32m_P2.y = y2;[m
+ }[m
+ [m
+ [m
+[36m@@ -207,8 +207,8 @@[m [mvoid CLine::draw( void )[m
+ CRect::CRect( float x1, float y1, float x2, float y2 )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   set( x1, y1, x2, y2 );[m
+[31m-   ulCount++;[m
+[32m+[m	[32mset( x1, y1, x2, y2 );[m
+[32m+[m	[32mulCount++;[m
+ }[m
+ [m
+ [m
+[36m@@ -220,9 +220,9 @@[m [mCRect::CRect( float x1, float y1, float x2, float y2 )[m
+ CRect::CRect( const CPoint& ptP1, const CPoint& ptP2 )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1 = ptP1;[m
+[31m-   _P2 = ptP2;[m
+[31m-   ulCount++;[m
+[32m+[m	[32m_P1 = ptP1;[m
+[32m+[m	[32m_P2 = ptP2;[m
+[32m+[m	[32mulCount++;[m
+ }[m
+ [m
+ [m
+[36m@@ -234,9 +234,9 @@[m [mCRect::CRect( const CPoint& ptP1, const CPoint& ptP2 )[m
+ CRect::CRect( const CRect& source )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1 = source._P1;[m
+[31m-   _P2 = source._P2;[m
+[31m-   ulCount++;[m
+[32m+[m	[32m_P1 = source._P1;[m
+[32m+[m	[32m_P2 = source._P2;[m
+[32m+[m	[32mulCount++;[m
+ }[m
+ [m
+ [m
+[36m@@ -245,7 +245,7 @@[m [mCRect::CRect( const CRect& source )[m
+ // function: operator+()[m
+ // purpose:  constructs a rectangle object by adding two rectangles[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+[31m-CRect CRect::operator+( const CRect &addrect )[m
+[32m+[m[32mCRect CRect::operator+( const CRect& addrect )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+ 	float x1 = _P1.x;[m
+[36m@@ -280,10 +280,10 @@[m [mCRect CRect::operator+( const CRect &addrect )[m
+ void CRect::set( float x1, float y1, float x2, float y2 )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1.x = x1;[m
+[31m-   _P1.y = y1;[m
+[31m-   _P2.x = x2;[m
+[31m-   _P2.y = y2;[m
+[32m+[m	[32m_P1.x = x1;[m
+[32m+[m	[32m_P1.y = y1;[m
+[32m+[m	[32m_P2.x = x2;[m
+[32m+[m	[32m_P2.y = y2;[m
+ }[m
+ [m
+ [m
+[36m@@ -319,8 +319,8 @@[m [mvoid CRect::draw( void )[m
+ CCircle::CCircle( float x1, float y1, float radius )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   set( x1, y1, radius );[m
+[31m-   ulCount++;[m
+[32m+[m	[32mset( x1, y1, radius );[m
+[32m+[m	[32mulCount++;[m
+ }[m
+ [m
+ [m
+[36m@@ -332,9 +332,9 @@[m [mCCircle::CCircle( float x1, float y1, float radius )[m
+ CCircle::CCircle( const CPoint& ptP1, float radius )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1 = ptP1;[m
+[31m-   _Radius = radius;[m
+[31m-   ulCount++;[m
+[32m+[m	[32m_P1 = ptP1;[m
+[32m+[m	[32m_Radius = radius;[m
+[32m+[m	[32mulCount++;[m
+ }[m
+ [m
+ [m
+[36m@@ -346,9 +346,9 @@[m [mCCircle::CCircle( const CPoint& ptP1, float radius )[m
+ CCircle::CCircle( const CCircle& source )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1 = source._P1;[m
+[31m-   _Radius = source._Radius;[m
+[31m-   ulCount++;[m
+[32m+[m	[32m_P1 = source._P1;[m
+[32m+[m	[32m_Radius = source._Radius;[m
+[32m+[m	[32mulCount++;[m
+ }[m
+ [m
+ [m
+[36m@@ -403,9 +403,9 @@[m [mCCircle CCircle::operator+( const CCircle& addcircle )[m
+ void CCircle::set( float x1, float y1, float radius )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+[31m-   _P1.x = x1;[m
+[31m-   _P1.y = y1;[m
+[31m-   _Radius = radius;[m
+[32m+[m	[32m_P1.x = x1;[m
+[32m+[m	[32m_P1.y = y1;[m
+[32m+[m	[32m_Radius = radius;[m
+ }[m
+ [m
+ [m
+[36m@@ -431,7 +431,7 @@[m [mvoid CCircle::draw( void )[m
+ ///////////////////////////////////////////////////////////////////////////////[m
+ {[m
+ 	glPushMatrix();[m
+[31m-		glTranslatef((GLfloat)_P1.x, (GLfloat)_P1.y, 0.0);[m
+[31m-		gluDisk(gluNewQuadric(), _Radius, _Radius, 100, 1);[m
+[32m+[m	[32mglTranslatef((GLfloat)_P1.x, (GLfloat)_P1.y, 0.0);[m
+[32m+[m	[32mgluDisk(gluNewQuadric(), _Radius, _Radius, 100, 1);[m
+ 	glPopMatrix();[m
+ }[m
+\ No newline at end of file[m

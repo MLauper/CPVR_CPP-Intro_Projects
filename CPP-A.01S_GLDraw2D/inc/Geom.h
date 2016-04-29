@@ -25,8 +25,8 @@ version: 1.01
 class CPoint
 {
 private:
-   float x;
-   float y;
+	float x;
+	float y;
 
 public: // functions
 	void set( float x, float y );
@@ -57,12 +57,12 @@ public: // functions
 class CRect
 {
 private:
-   CPoint _P1;
-   CPoint _P2;
+	CPoint _P1;
+	CPoint _P2;
 
 public: // functions
-   void set( float x1, float y1, float x2, float y2 );
-   void list( void );
+	void set( float x1, float y1, float x2, float y2 );
+	void list( void );
 };
 
 
@@ -73,12 +73,12 @@ public: // functions
 class CCircle
 {
 private:
-   CPoint _P1;
-   float _Radius;
+	CPoint _P1;
+	float _Radius;
 
 public: // functions
-   void set( float x1, float y1, float radius );
-   void list( void );
+	void set( float x1, float y1, float radius );
+	void list( void );
 };
 
 
