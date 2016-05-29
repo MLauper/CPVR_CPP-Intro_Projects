@@ -3,3 +3,5 @@
 *.exe
 *.ilk
 *.pdb
+CMakeCache.txt
+CMakeFiles/*
